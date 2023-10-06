@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | TerrorGame</title>
+    <title>Unity WebGL Player | VisualizePaceMision</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -20,7 +20,7 @@
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">TerrorGame</div>
+        <div id="unity-build-title">VisualizePaceMision</div>
       </div>
     </div>
     <script>
@@ -56,14 +56,14 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/pru.loader.js";
+      var loaderUrl = buildUrl + "/4x.loader.js";
       var config = {
-        dataUrl: buildUrl + "/pru.data",
-        frameworkUrl: buildUrl + "/pru.framework.js",
-        codeUrl: buildUrl + "/pru.wasm",
+        dataUrl: buildUrl + "/4x.data.gz",
+        frameworkUrl: buildUrl + "/4x.framework.js.gz",
+        codeUrl: buildUrl + "/4x.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
-        productName: "TerrorGame",
+        productName: "VisualizePaceMision",
         productVersion: "0.1",
         showBanner: unityShowBanner,
       };
