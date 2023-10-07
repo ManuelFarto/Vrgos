@@ -46,8 +46,8 @@ requirejs([
         // Create imagery layers.
         var BMNGOneImageLayer = new WorldWind.BMNGOneImageLayer();
         var BMNGLayer = new WorldWind.BMNGLayer();
-       // wwd.addLayer(BMNGOneImageLayer);
-       // wwd.addLayer(BMNGLayer);
+        // wwd.addLayer(BMNGOneImageLayer);
+        // wwd.addLayer(BMNGLayer);
 
         // Use the StarField layer to show stars and the Sun around the globe, and the Atmosphere layer to display
         // the atmosphere effect and the night side of the Earth.
@@ -55,8 +55,8 @@ requirejs([
         // The StarField layer should be added before the Atmosphere layer.
         var starFieldLayer = new WorldWind.StarFieldLayer();
         var atmosphereLayer = new WorldWind.AtmosphereLayer();
-         wwd.addLayer(starFieldLayer);
-        //wwd.addLayer(atmosphereLayer);
+        wwd.addLayer(starFieldLayer);
+        // wwd.addLayer(atmosphereLayer);
 
         // Set a date property for the StarField and Atmosphere layers to the current date and time.
         // This enables the Atmosphere layer to show a night side (and dusk/dawn effects in Earth's terminator).
