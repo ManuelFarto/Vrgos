@@ -7,6 +7,9 @@ fetch("/pru/js/data.json")
 
 var hasCompleted = false;
 var cont = 0;
+var satelliteEl = document.querySelector('#satelite');
+var currentPosition = new THREE.Vector3();
+var targetPosition = new THREE.Vector3();
 
 function animateSatellite() {
     if (cont == 617) {
@@ -15,26 +18,25 @@ function animateSatellite() {
     }
     cont = (cont + 1) % 618;
 
-    var sceneEl = document.querySelector('a-scene');
-    var satelliteEl = sceneEl.querySelector('#satelite');
-    var targetPosition = {
-        x: locations[cont].X / 7000,
-        y: locations[cont].Y / 7000,
-        z: locations[cont].Z / 7000 - 5
-    };
+    targetPosition.set(
+        locations[cont].X / 7000,
+        locations[cont].Y / 7000,
+        locations[cont].Z / 7000 - 5
+    );
 
-    var currentPosition = satelliteEl.getAttribute('position');
-
-    // Calcula la nueva posición interpolando suavemente
-    var newPosition = {
-        x: currentPosition.x + (targetPosition.x - currentPosition.x) * 0.1,
-        y: currentPosition.y + (targetPosition.y - currentPosition.y) * 0.1,
-        z: currentPosition.z + (targetPosition.z - currentPosition.z) * 0.1
-    };
-
-    satelliteEl.setAttribute('position', newPosition);
-
-    if (!hasCompleted) {
+    if (!currentPosition.equals(targetPosition)) {
+        currentPosition.lerp(targetPosition, 0.1); // Ajusta el valor para la velocidad
+        satelliteEl.setAttribute('position', currentPosition.toArray().join(' '));
+        requestAnimationFrame(animateSatellite);
+    } else if (!hasCompleted) {
         requestAnimationFrame(animateSatellite);
     }
 }
+
+// Inicializa la posición inicial
+currentPosition.set(
+    locations[0].X / 7000,
+    locations[0].Y / 7000,
+    locations[0].Z / 7000 - 5
+);
+satelliteEl.setAttribute('position', currentPosition.toArray().join(' '));
