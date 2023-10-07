@@ -1,9 +1,11 @@
+
 fetch("/pru/js/data.json").then(response => response.json()).then(json => {
     locations = json["coordinates"];
 })
 
 var hasCompleted = false;
 var cont = 0;
+var num = 6500; 
 setInterval(function () {
     if (cont == 617) {
         hasCompleted = true;
@@ -13,5 +15,5 @@ setInterval(function () {
     var sceneEl = document.querySelector('a-scene');
     
     sceneEl.querySelector('#satelite')
-        .setAttribute('position', (locations[cont].X / 7000) + " " + (locations[cont].Y / 7000) + " " + (locations[cont].Z / 7000 - 5));
+        .setAttribute('position', (locations[cont].X / num) + " " + (locations[cont].Y / num) + " " + (locations[cont].Z / num - 5));
 }, 50);
