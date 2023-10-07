@@ -9,9 +9,19 @@
 </head>
   <body>
     <a-scene>
-    <a-sky src="https://i.postimg.cc/50GqdjKN/sky.jpg"></a-sky>
-    <a-sphere position="0 1.25 -5" radius="1.25" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 5000" src="https://i.postimg.cc/jSJTtfkG/BMNG-world-topo-bathy-200405-3-2048x1024.jpg">
-	</a-sphere>
+      <a-assets>
+        <a-asset-item id="sat" src="obj/satelite.obj"></a-asset-item>
+        <a-asset-item id="sat" src="obj/satelite.mtl"></a-asset-item>
+        <img src="textures/sky.jpg" id="sky">
+        <img src="textures/earth.jpg" id="earth">
+      </a-assets> 
+
+      <a-sky src="https://i.postimg.cc/50GqdjKN/sky.jpg"></a-sky>
+      <a-sphere position="0 1.25 -5" radius="1.25" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear" src="#earth">
+      </a-sphere>
+      <a-sky src="#sky"></a-sky>
+      <a-entity camera="" position="0 1 3"></a-entity>
+      <a-entity obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.5 0.5 0.5"></a-entity>
     </a-scene>
   </body>
 </html>
