@@ -44,10 +44,10 @@ requirejs([
         var wwd = new WorldWind.WorldWindow('canvasOne');
 
         // Create imagery layers.
-        /* var BMNGOneImageLayer = new WorldWind.BMNGOneImageLayer();
+        var BMNGOneImageLayer = new WorldWind.BMNGOneImageLayer();
         var BMNGLayer = new WorldWind.BMNGLayer();
         wwd.addLayer(BMNGOneImageLayer);
-        wwd.addLayer(BMNGLayer); */
+        wwd.addLayer(BMNGLayer);
 
         // Use the StarField layer to show stars and the Sun around the globe, and the Atmosphere layer to display
         // the atmosphere effect and the night side of the Earth.
