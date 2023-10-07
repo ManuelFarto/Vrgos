@@ -71,7 +71,7 @@ requirejs([
         // Begin the simulation at the current time as provided by the browser.
         var startTimeMillis = Date.now();
 
-        function runSimulation() {
+        /* function runSimulation() {
             // Compute the number of simulated days (or fractions of a day) since the simulation began.
             var elapsedTimeMillis = Date.now() - startTimeMillis;
             var simulatedDays = elapsedTimeMillis / simulatedMillisPerDay;
@@ -86,8 +86,8 @@ requirejs([
             atmosphereLayer.time = simulatedDate;
             wwd.redraw(); // Update the WorldWindow scene.
 
-            requestAnimationFrame(runSimulation);
-        }
+            requestAnimationFrame(runSimulation); 
+        }*/
 
         // Animate the starry sky as well as the globe's day/night cycle.
         requestAnimationFrame(runSimulation);
