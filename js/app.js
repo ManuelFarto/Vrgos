@@ -5,7 +5,7 @@ fetch("/pru/js/data.json").then(response => response.json()).then(json => {
 
 var hasCompleted = false;
 var cont = 0;
-var num = 620; 
+var num = 5250; 
 setInterval(function () {
     if (cont == 617) {
         hasCompleted = true;
