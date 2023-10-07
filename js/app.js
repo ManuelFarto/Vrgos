@@ -1,5 +1,5 @@
 
-fetch("/js/data.json").then(response => response.json()).then(json => {
+fetch("/pru/js/data.json").then(response => response.json()).then(json => {
     locations = json["coordinates"];
 })
 
