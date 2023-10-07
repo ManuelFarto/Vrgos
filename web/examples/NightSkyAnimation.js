@@ -54,16 +54,16 @@ requirejs([
         // Note that the StarField layer requires a dark canvas background color.
         // The StarField layer should be added before the Atmosphere layer.
         var starFieldLayer = new WorldWind.StarFieldLayer();
-      /*   var atmosphereLayer = new WorldWind.AtmosphereLayer(); */
+        var atmosphereLayer = new WorldWind.AtmosphereLayer();
          wwd.addLayer(starFieldLayer);
-        /* wwd.addLayer(atmosphereLayer); */
+         wwd.addLayer(atmosphereLayer);
 
         // Set a date property for the StarField and Atmosphere layers to the current date and time.
         // This enables the Atmosphere layer to show a night side (and dusk/dawn effects in Earth's terminator).
         // The StarField layer positions its stars according to this date.
         var now = new Date();
         starFieldLayer.time = now;
-      /*   atmosphereLayer.time = now; */
+        atmosphereLayer.time = now;
 
         // In this example, each full day/night cycle lasts 8 seconds in real time.
         var simulatedMillisPerDay = 8000;
@@ -83,7 +83,7 @@ requirejs([
 
             // Update the date in both the Starfield and the Atmosphere layers.
             starFieldLayer.time = simulatedDate;
-            /* atmosphereLayer.time = simulatedDate; */
+            atmosphereLayer.time = simulatedDate;
             wwd.redraw(); // Update the WorldWindow scene.
 
             requestAnimationFrame(runSimulation);
