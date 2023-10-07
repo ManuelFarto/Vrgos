@@ -22,10 +22,9 @@
       <a-sky src="web/examples/NightSkyAnimation.html"></a-sky>
       <a-entity camera="" position="0 1 3"></a-entity>
       <a-entity id="satelite" obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.1 0.1 0.1"></a-entity>
-      <a-entity laser-controls="hand: left"></a-entity>
-      <a-entity laser-controls="hand: rigth"></a-entity>
-      <a-entity laser-controls raycaster="objects: .links; far: 5"></a-entity>
-      <a-entity laser-controls raycaster="lineColor: red; lineOpacity: 0.5"></a-entity>
+      <a-entity laser-controls="hand: right">
+  	<a-entity raycaster="objects: .links; far: 5; lineColor: red; lineOpacity: 0.5"></a-entity>
+	</a-entity>
     </a-scene>
   </body>
 </html>
