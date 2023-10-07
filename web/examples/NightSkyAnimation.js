@@ -54,9 +54,9 @@ requirejs([
         // Note that the StarField layer requires a dark canvas background color.
         // The StarField layer should be added before the Atmosphere layer.
         var starFieldLayer = new WorldWind.StarFieldLayer();
-/*         var atmosphereLayer = new WorldWind.AtmosphereLayer();
+      /*   var atmosphereLayer = new WorldWind.AtmosphereLayer(); */
          wwd.addLayer(starFieldLayer);
-        wwd.addLayer(atmosphereLayer); */
+        /* wwd.addLayer(atmosphereLayer); */
 
         // Set a date property for the StarField and Atmosphere layers to the current date and time.
         // This enables the Atmosphere layer to show a night side (and dusk/dawn effects in Earth's terminator).
