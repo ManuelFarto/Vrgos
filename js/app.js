@@ -21,4 +21,4 @@ setInterval(function () {
     var sceneEl = document.querySelector('a-scene');
 
     sceneEl.querySelector('#satelite').setAttribute('position', (locations[cont].X / num) + " " + (locations[cont].Y / num) + " " + (locations[cont].Z / num -2));
-}, 15);
+}, 1);
