@@ -45,7 +45,41 @@ function interpolate(cont, interpolation_cont) {
     var deltaY =( (locations[cont + 1].Y - locations[cont].Y) / INTERVAL_INTERPOLATION) / num;
     var deltaZ =( (locations[cont + 1].Z - locations[cont].Z) / INTERVAL_INTERPOLATION) / num;
 
-    console.log("delta = " + deltaX + " " + deltaY + " " + deltaZ);
     sceneEl.querySelector('#satelite').setAttribute('position', (locations[cont].X / num + deltaX * interpolation_cont) + " " + (locations[cont].Y / num + deltaY * interpolation_cont) + " " + (locations[cont].Z / num + deltaZ * interpolation_cont -5));
-    console.log("coords = " + (locations[cont].X / num + deltaX * interpolation_cont) + " " + (locations[cont].Y / num + deltaY * interpolation_cont) + " " + (locations[cont].Z / num + deltaZ * interpolation_cont -5));
 }
+
+  AFRAME.registerComponent('grab-earth', {
+    init: function () {
+      const el = this.el; // The element with this component
+      const controller = el.components['tracked-controls']; // Get the controller component
+
+      // Check if the controller is available and has a trigger button
+      if (controller && controller.isControllerPresent('right')) {
+        const triggerButton = controller.getController().components['tracked-controls'].controller.buttons[1];
+
+        // Listen for the trigger button click event
+        el.addEventListener('triggerdown', () => {
+          // Get the Earth model
+          const earth = document.getElementById('earth-model'); // Adjust this ID as per your HTML structure
+
+          // Attach the Earth model to the controller
+          el.appendChild(earth);
+
+          // Set a flag to indicate that the Earth is attached
+          this.isAttached = true;
+        });
+
+        // Listen for the trigger button release event
+        el.addEventListener('triggerup', () => {
+          // Check if the Earth model is attached, then remove it
+          if (this.isAttached) {
+            const earth = document.getElementById('tierra');
+            earth.parentNode.removeChild(earth);
+
+            // Reset the flag
+            this.isAttached = false;
+          }
+        });
+      }
+    },
+  });
