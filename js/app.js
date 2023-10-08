@@ -18,7 +18,11 @@ setInterval(function () {
     }
     cont = (cont + 1)%618;
     var sceneEl = document.querySelector('a-scene');
+	var sceneDa = document.querySelector('a-scene');
+	var sceneTi = document.querySelector('a-scene');
 
+	sceneDa.querySelector('#time').setAttribute('value', (locations[cont].Time.substr(0,11)));
+	sceneDa.querySelector('#datos').setAttribute('value', (locations[cont].Date));
     sceneEl.querySelector('#satelite').setAttribute('position', (locations[cont].X / num) + " " + (locations[cont].Y / num) + " " + (locations[cont].Z / num -5));
 }, 80);
 
