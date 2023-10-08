@@ -51,19 +51,18 @@ function interpolate(cont, interpolation_cont) {
   AFRAME.registerComponent('grab-earth', {
     init: function () {
       const el = this.el; // The element with this component
-      const controller = el.components['tracked-controls']; // Get the controller component
 
-      // Check if the controller is available and has a trigger button
-      if (controller && controller.isControllerPresent('right')) {
-        const triggerButton = controller.getController().components['tracked-controls'].controller.buttons[1];
+      // Check if the entity has a laser-controls component
+      if (el.components['laser-controls']) {
+        const laserControls = el.components['laser-controls'];
 
         // Listen for the trigger button click event
         el.addEventListener('triggerdown', () => {
           // Get the Earth model
-          const earth = document.getElementById('earth-model'); // Adjust this ID as per your HTML structure
+          const earth = document.getElementById('tierra'); // Adjust this ID as per your HTML structure
 
           // Attach the Earth model to the controller
-          el.appendChild(earth);
+          laserControls.intersectedEl.appendChild(earth);
 
           // Set a flag to indicate that the Earth is attached
           this.isAttached = true;
