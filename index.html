@@ -13,7 +13,6 @@
 		<a-assets>
 			<a-asset-item id="sat" src="obj/satelite1.obj"></a-asset-item>
 			<a-asset-item id="sat" src="obj/satelite.mtl"></a-asset-item>
-		<!-- <img src="web/examples/NightSkyAnimation.html" id="sky"> -->
 		<img src="textures/earth.jpg" id="earth">
 		</a-assets>
 		<a-entity scale="1.5 1.5 1.5" rotation="0 0 0">
@@ -23,13 +22,14 @@
 		</a-entity>
 		<a-sky src="textures/star.png" ></a-sky>
 
+      <a-sky src="star.png" ></a-sky>
 		<a-entity camera="" position="0 1 3"></a-entity>
-			<a-entity laser-controls="hand: right">
+		<a-entity laser-controls="hand: right">
 			<a-entity raycaster="objects: .links; far: 5; lineColor: red; lineOpacity: 0.5"></a-entity>
 		</a-entity>
-			<a-entity laser-controls="hand: left">
-			<a-entity raycaster="objects: .links; far: 5; lineColor: red; lineOpacity: 0.5"></a-entity>
+		<a-entity laser-controls="hand: left">
+  			<a-entity raycaster="objects: .links; far: 5; lineColor: red; lineOpacity: 0.5"></a-entity>
 		</a-entity>
-	</a-scene>
-	</body>
+    </a-scene>
+  </body>
 </html>
