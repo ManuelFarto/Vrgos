@@ -148,6 +148,7 @@ define([
              * @type {Object[]}
              * @readonly
              */
+
             this.metadata;
 
             /**

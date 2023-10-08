@@ -28,235 +28,255 @@
 /**
  * @exports LayerManager
  */
-// define(function () {
-//     "use strict";
+define(function () {
+    "use strict";
 
-//     /**
-//      * Constructs a layer manager for a specified {@link WorldWindow}.
-//      * @alias LayerManager
-//      * @constructor
-//      * @classdesc Provides a layer manager to interactively control layer visibility for a WorldWindow.
-//      * @param {WorldWindow} worldWindow The WorldWindow to associated this layer manager with.
-//      */
-//     var LayerManager = function (worldWindow) {
-//         var thisExplorer = this;
+    /**
+     * Constructs a layer manager for a specified {@link WorldWindow}.
+     * @alias LayerManager
+     * @constructor
+     * @classdesc Provides a layer manager to interactively control layer visibility for a WorldWindow.
+     * @param {WorldWindow} worldWindow The WorldWindow to associated this layer manager with.
+     */
+	function captureImageAndSave() {
+		const canvas = document.getElementById('canvasOne'); // Reemplaza 'canvasId' con el ID de tu elemento de lienzo.
+		const imageDataURL = canvas.toDataURL('image/png');
 
-//         this.wwd = worldWindow;
+		try {
+			// Intenta guardar la imagen.
+			saveAs(imageDataURL, 'imagen.png');
+		} catch (error) {
+			console.error('Error al guardar la imagen:', error);
+		}
+	}
 
-//         this.roundGlobe = this.wwd.globe;
+    var LayerManager = function (worldWindow) {
+        var thisExplorer = this;
 
-//         this.createProjectionList();
-//         $("#projectionDropdown").find(" li").on("click", function (e) {
-//             thisExplorer.onProjectionClick(e);
-//         });
+        this.wwd = worldWindow;
 
-//         this.synchronizeLayerList();
+        this.roundGlobe = this.wwd.globe;
 
-//         $("#searchBox").find("button").on("click", function (e) {
-//             thisExplorer.onSearchButton(e);
-//         });
 
-//         this.geocoder = new WorldWind.NominatimGeocoder();
-//         this.goToAnimator = new WorldWind.GoToAnimator(this.wwd);
-//         $("#searchText").on("keypress", function (e) {
-//             thisExplorer.onSearchTextKeyPress($(this), e);
-//         });
+        $("#projectionDropdown").find(" li").on("click", function (e) {
+			captureImageAndSave();
+            thisExplorer.onProjectionClick(e);
 
-//         //
-//         //this.wwd.redrawCallbacks.push(function (worldWindow, stage) {
-//         //    if (stage == WorldWind.AFTER_REDRAW) {
-//         //        thisExplorer.updateVisibilityState(worldWindow);
-//         //    }
-//         //});
-//     };
+        });
 
-//     // LayerManager.prototype.onProjectionClick = function (event) {
-//     //     var projectionName = event.target.innerText || event.target.innerHTML;
-//     //     $("#projectionDropdown").find("button").html(projectionName + ' <span class="caret"></span>');
+        this.synchronizeLayerList();
 
-//     //     if (projectionName === "3D") {
-//     //         if (!this.roundGlobe) {
-//     //             this.roundGlobe = new WorldWind.Globe(new WorldWind.EarthElevationModel());
-//     //         }
+        $("#searchBox").find("button").on("click", function (e) {
+			captureImageAndSave();
+            thisExplorer.onSearchButton(e);
+        });
 
-//     //         if (this.wwd.globe !== this.roundGlobe) {
-//     //             this.wwd.globe = this.roundGlobe;
-//     //         }
-//     //     } else {
-//     //         if (!this.flatGlobe) {
-//     //             this.flatGlobe = new WorldWind.Globe2D();
-//     //         }
+        this.geocoder = new WorldWind.NominatimGeocoder();
+        this.goToAnimator = new WorldWind.GoToAnimator(this.wwd);
+        $("#searchText").on("keypress", function (e) {
+			captureImageAndSave();
+            thisExplorer.onSearchTextKeyPress($(this), e);
+        });
 
-//     //         if (projectionName === "Equirectangular") {
-//     //             this.flatGlobe.projection = new WorldWind.ProjectionEquirectangular();
-//     //         } else if (projectionName === "Mercator") {
-//     //             this.flatGlobe.projection = new WorldWind.ProjectionMercator();
-//     //         } else if (projectionName === "North Polar") {
-//     //             this.flatGlobe.projection = new WorldWind.ProjectionPolarEquidistant("North");
-//     //         } else if (projectionName === "South Polar") {
-//     //             this.flatGlobe.projection = new WorldWind.ProjectionPolarEquidistant("South");
-//     //         } else if (projectionName === "North UPS") {
-//     //             this.flatGlobe.projection = new WorldWind.ProjectionUPS("North");
-//     //         } else if (projectionName === "South UPS") {
-//     //             this.flatGlobe.projection = new WorldWind.ProjectionUPS("South");
-//     //         } else if (projectionName === "North Gnomonic") {
-//     //             this.flatGlobe.projection = new WorldWind.ProjectionGnomonic("North");
-//     //         } else if (projectionName === "South Gnomonic") {
-//     //             this.flatGlobe.projection = new WorldWind.ProjectionGnomonic("South");
-//     //         }
+        //
+        //this.wwd.redrawCallbacks.push(function (worldWindow, stage) {
+        //    if (stage == WorldWind.AFTER_REDRAW) {
+        //        thisExplorer.updateVisibilityState(worldWindow);
+        //    }
+        //});
+    };
 
-//     //         if (this.wwd.globe !== this.flatGlobe) {
-//     //             this.wwd.globe = this.flatGlobe;
-//     //         }
-//     //     }
+    // LayerManager.prototype.onProjectionClick = function (event) {
+    //     var projectionName = event.target.innerText || event.target.innerHTML;
+    //     $("#projectionDropdown").find("button").html(projectionName + ' <span class="caret"></span>');
 
-//     //     this.wwd.redraw();
-//     // };
+    //     if (projectionName === "3D") {
+    //         if (!this.roundGlobe) {
+    //             this.roundGlobe = new WorldWind.Globe(new WorldWind.EarthElevationModel());
+    //         }
 
-//     LayerManager.prototype.onLayerClick = function (layerButton) {
-//         var layerName = layerButton.text();
+    //         if (this.wwd.globe !== this.roundGlobe) {
+    //             this.wwd.globe = this.roundGlobe;
+    //         }
+    //     } else {
+    //         if (!this.flatGlobe) {
+    //             this.flatGlobe = new WorldWind.Globe2D();
+    //         }
 
-//         // Update the layer state for the selected layer.
-//         for (var i = 0, len = this.wwd.layers.length; i < len; i++) {
-//             var layer = this.wwd.layers[i];
-//             if (layer.hide) {
-//                 continue;
-//             }
+    //         if (projectionName === "Equirectangular") {
+    //             this.flatGlobe.projection = new WorldWind.ProjectionEquirectangular();
+    //         } else if (projectionName === "Mercator") {
+    //             this.flatGlobe.projection = new WorldWind.ProjectionMercator();
+    //         } else if (projectionName === "North Polar") {
+    //             this.flatGlobe.projection = new WorldWind.ProjectionPolarEquidistant("North");
+    //         } else if (projectionName === "South Polar") {
+    //             this.flatGlobe.projection = new WorldWind.ProjectionPolarEquidistant("South");
+    //         } else if (projectionName === "North UPS") {
+    //             this.flatGlobe.projection = new WorldWind.ProjectionUPS("North");
+    //         } else if (projectionName === "South UPS") {
+    //             this.flatGlobe.projection = new WorldWind.ProjectionUPS("South");
+    //         } else if (projectionName === "North Gnomonic") {
+    //             this.flatGlobe.projection = new WorldWind.ProjectionGnomonic("North");
+    //         } else if (projectionName === "South Gnomonic") {
+    //             this.flatGlobe.projection = new WorldWind.ProjectionGnomonic("South");
+    //         }
 
-//             if (layer.displayName === layerName) {
-//                 layer.enabled = !layer.enabled;
-//                 if (layer.enabled) {
-//                     layerButton.addClass("active");
-//                 } else {
-//                     layerButton.removeClass("active");
-//                 }
-//                 this.wwd.redraw();
-//                 break;
-//             }
-//         }
-//     };
+    //         if (this.wwd.globe !== this.flatGlobe) {
+    //             this.wwd.globe = this.flatGlobe;
+    //         }
+    //     }
 
-//     LayerManager.prototype.synchronizeLayerList = function () {
-//         var layerListItem = $("#layerList");
+    //     this.wwd.redraw();
+    // };
 
-//         layerListItem.find("button").off("click");
-//         layerListItem.find("button").remove();
+    LayerManager.prototype.onLayerClick = function (layerButton) {
+        var layerName = layerButton.text();
+		captureImageAndSave();
+        // Update the layer state for the selected layer.
+        for (var i = 0, len = this.wwd.layers.length; i < len; i++) {
+            var layer = this.wwd.layers[i];
+            if (layer.hide) {
+                continue;
+            }
 
-//         // Synchronize the displayed layer list with the WorldWindow's layer list.
-//         for (var i = 0, len = this.wwd.layers.length; i < len; i++) {
-//             var layer = this.wwd.layers[i];
-//             if (layer.hide) {
-//                 continue;
-//             }
-//             var layerItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
-//             layerListItem.append(layerItem);
+            if (layer.displayName === layerName) {
+                layer.enabled = !layer.enabled;
+                if (layer.enabled) {
+                    layerButton.addClass("active");
+                } else {
+                    layerButton.removeClass("active");
+                }
+                this.wwd.redraw();
+                break;
+            }
+        }
+		captureImageAndSave();
+    };
 
-//             if (layer.showSpinner && Spinner) {
-//                 var opts = {
-//                     scale: 0.9,
-//                 };
-//                 var spinner = new Spinner(opts).spin();
-//                 layerItem.append(spinner.el);
-//             }
+    LayerManager.prototype.synchronizeLayerList = function () {
+        var layerListItem = $("#layerList");
 
-//             if (layer.enabled) {
-//                 layerItem.addClass("active");
-//             } else {
-//                 layerItem.removeClass("active");
-//             }
-//         }
+        layerListItem.find("button").off("click");
+        layerListItem.find("button").remove();
 
-//         var self = this;
-//         layerListItem.find("button").on("click", function (e) {
-//             self.onLayerClick($(this));
-//         });
-//     };
-//     //
-//     //LayerManager.prototype.updateVisibilityState = function (worldWindow) {
-//     //    var layerButtons = $("#layerList").find("button"),
-//     //        layers = worldWindow.layers;
-//     //
-//     //    for (var i = 0; i < layers.length; i++) {
-//     //        var layer = layers[i];
-//     //        for (var j = 0; j < layerButtons.length; j++) {
-//     //            var button = layerButtons[j];
-//     //
-//     //            if (layer.displayName === button.innerText) {
-//     //                if (layer.inCurrentFrame) {
-//     //                    button.innerHTML = "<em>" + layer.displayName + "</em>";
-//     //                } else {
-//     //                    button.innerHTML = layer.displayName;
-//     //                }
-//     //            }
-//     //        }
-//     //    }
-//     //};
+        // Synchronize the displayed layer list with the WorldWindow's layer list.
+        for (var i = 0, len = this.wwd.layers.length; i < len; i++) {
+            var layer = this.wwd.layers[i];
+            if (layer.hide) {
+                continue;
+            }
+            var layerItem = $('<button class="list-group-item btn btn-block">' + layer.displayName + '</button>');
+            layerListItem.append(layerItem);
 
-//     // LayerManager.prototype.createProjectionList = function () {
-//     //     var projectionNames = [
-//     //         "3D",
-//     //         "Equirectangular",
-//     //         "Mercator",
-//     //         "North Polar",
-//     //         "South Polar",
-//     //         "North UPS",
-//     //         "South UPS",
-//     //         "North Gnomonic",
-//     //         "South Gnomonic"
-//     //     ];
-//     //     var projectionDropdown = $("#projectionDropdown");
+            if (layer.showSpinner && Spinner) {
+                var opts = {
+                    scale: 0.9,
+                };
+                var spinner = new Spinner(opts).spin();
+                layerItem.append(spinner.el);
+            }
 
-//     //     var dropdownButton = $('<button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">3D<span class="caret"></span></button>');
-//     //     projectionDropdown.append(dropdownButton);
+            if (layer.enabled) {
+                layerItem.addClass("active");
+            } else {
+                layerItem.removeClass("active");
+            }
+        }
 
-//     //     var ulItem = $('<ul class="dropdown-menu">');
-//     //     projectionDropdown.append(ulItem);
+        var self = this;
+        layerListItem.find("button").on("click", function (e) {
 
-//     //     for (var i = 0; i < projectionNames.length; i++) {
-//     //         var projectionItem = $('<li><a >' + projectionNames[i] + '</a></li>');
-//     //         ulItem.append(projectionItem);
-//     //     }
+            self.onLayerClick($(this));
 
-//     //     ulItem = $('</ul>');
-//     //     projectionDropdown.append(ulItem);
-//     // };
+        });
 
-//     LayerManager.prototype.onSearchButton = function (event) {
-//         this.performSearch($("#searchText")[0].value)
-//     };
+    };
+    //
+    //LayerManager.prototype.updateVisibilityState = function (worldWindow) {
+    //    var layerButtons = $("#layerList").find("button"),
+    //        layers = worldWindow.layers;
+    //
+    //    for (var i = 0; i < layers.length; i++) {
+    //        var layer = layers[i];
+    //        for (var j = 0; j < layerButtons.length; j++) {
+    //            var button = layerButtons[j];
+    //
+    //            if (layer.displayName === button.innerText) {
+    //                if (layer.inCurrentFrame) {
+    //                    button.innerHTML = "<em>" + layer.displayName + "</em>";
+    //                } else {
+    //                    button.innerHTML = layer.displayName;
+    //                }
+    //            }
+    //        }
+    //    }
+    //};
 
-//     LayerManager.prototype.onSearchTextKeyPress = function (searchInput, event) {
-//         if (event.keyCode === 13) {
-//             searchInput.blur();
-//             this.performSearch($("#searchText")[0].value)
-//         }
-//     };
+    // LayerManager.prototype.createProjectionList = function () {
+    //     var projectionNames = [
+    //         "3D",
+    //         "Equirectangular",
+    //         "Mercator",
+    //         "North Polar",
+    //         "South Polar",
+    //         "North UPS",
+    //         "South UPS",
+    //         "North Gnomonic",
+    //         "South Gnomonic"
+    //     ];
+    //     var projectionDropdown = $("#projectionDropdown");
 
-//     LayerManager.prototype.performSearch = function (queryString) {
-//         if (queryString) {
-//             var thisLayerManager = this,
-//                 latitude, longitude;
+    //     var dropdownButton = $('<button class="btn btn-info btn-block dropdown-toggle" type="button" data-toggle="dropdown">3D<span class="caret"></span></button>');
+    //     projectionDropdown.append(dropdownButton);
 
-//             if (queryString.match(WorldWind.WWUtil.latLonRegex)) {
-//                 var tokens = queryString.split(",");
-//                 latitude = parseFloat(tokens[0]);
-//                 longitude = parseFloat(tokens[1]);
-//                 thisLayerManager.goToAnimator.goTo(new WorldWind.Location(latitude, longitude));
-//             } else {
-//                 this.geocoder.lookup(queryString, function (geocoder, result) {
-//                     if (result.length > 0) {
-//                         latitude = parseFloat(result[0].lat);
-//                         longitude = parseFloat(result[0].lon);
+    //     var ulItem = $('<ul class="dropdown-menu">');
+    //     projectionDropdown.append(ulItem);
 
-//                         WorldWind.Logger.log(
-//                             WorldWind.Logger.LEVEL_INFO, queryString + ": " + latitude + ", " + longitude);
+    //     for (var i = 0; i < projectionNames.length; i++) {
+    //         var projectionItem = $('<li><a >' + projectionNames[i] + '</a></li>');
+    //         ulItem.append(projectionItem);
+    //     }
 
-//                         thisLayerManager.goToAnimator.goTo(new WorldWind.Location(latitude, longitude));
-//                     }
-//                 });
-//             }
-//         }
-//     };
+    //     ulItem = $('</ul>');
+    //     projectionDropdown.append(ulItem);
+    // };
 
-//     return LayerManager;
-// });
+    LayerManager.prototype.onSearchButton = function (event) {
+        this.performSearch($("#searchText")[0].value)
+    };
+
+    LayerManager.prototype.onSearchTextKeyPress = function (searchInput, event) {
+        if (event.keyCode === 13) {
+            searchInput.blur();
+            this.performSearch($("#searchText")[0].value)
+        }
+    };
+
+    LayerManager.prototype.performSearch = function (queryString) {
+        if (queryString) {
+            var thisLayerManager = this,
+                latitude, longitude;
+
+            if (queryString.match(WorldWind.WWUtil.latLonRegex)) {
+                var tokens = queryString.split(",");
+                latitude = parseFloat(tokens[0]);
+                longitude = parseFloat(tokens[1]);
+                thisLayerManager.goToAnimator.goTo(new WorldWind.Location(latitude, longitude));
+            } else {
+                this.geocoder.lookup(queryString, function (geocoder, result) {
+                    if (result.length > 0) {
+                        latitude = parseFloat(result[0].lat);
+                        longitude = parseFloat(result[0].lon);
+
+                        WorldWind.Logger.log(
+                            WorldWind.Logger.LEVEL_INFO, queryString + ": " + latitude + ", " + longitude);
+
+                        thisLayerManager.goToAnimator.goTo(new WorldWind.Location(latitude, longitude));
+                    }
+                });
+            }
+        }
+    };
+	captureImageAndSave();
+    return LayerManager;
+});

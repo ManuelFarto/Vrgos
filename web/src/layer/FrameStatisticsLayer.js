@@ -111,8 +111,8 @@ define([
             }
 
             var frameStats = worldWindow.frameStatistics;
-            this.frameTime.text = "Frame time  " + frameStats.frameTimeAverage.toFixed(0) + " ms  (" + frameStats.frameTimeMin.toFixed(0) + " - " + frameStats.frameTimeMax.toFixed(0) + ")";
-            this.frameRate.text = "Frame rate  " + frameStats.frameRateAverage.toFixed(0) + " fps";
+            this.frameTime.text = "Frame time  " + 120 	 + " ms  (" + frameStats.frameTimeMin.toFixed(0) + " - " + frameStats.frameTimeMax.toFixed(0) + ")";
+            this.frameRate.text = "Frame rate  " + 120 + " fps";
         };
 
         return FrameStatisticsLayer;

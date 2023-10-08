@@ -145,6 +145,7 @@ define([
              */
             sunImageSource: {
                 get: function () {
+					console.log(this._sunImageSource);
                     return this._sunImageSource;
                 },
                 set: function (value) {
