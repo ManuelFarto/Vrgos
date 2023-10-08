@@ -21,7 +21,7 @@
 		<a-entity scale="1.5 1.5 1.5" rotation="0 0 0">
 			<a-sphere class="clickable" id="tierra" position="0 1.25 -5" radius="1.25" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" src="#earth">
 			</a-sphere>
-			<a-entity id="satelite" class="clickable" obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.001 0.001 0.001" material="offset: [object Object]; repeat: [object Object]; ambientOcclusionTextureOffset: [object Object]; ambientOcclusionTextureRepeat: [object Object]; displacementTextureOffset: [object Object]; displacementTextureRepeat: [object Object]; metalnessMap: [object HTMLImageElement]; metalnessTextureOffset: [object Object]; metalnessTextureRepeat: [object Object]; normalScale: [object Object]; normalTextureOffset: [object Object]; normalTextureRepeat: [object Object]; roughnessMap: [object HTMLImageElement]; roughnessTextureOffset: [object Object]; roughnessTextureRepeat: [object Object]; src: [object HTMLImageElement]" ></a-entity>
+			<a-entity id="satelite" class="clickable" obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.001 0.001 0.001" material="offset: metalnessMap: #metallic; roughnessMap: #roughness; src: #color"" ></a-entity>
 		</a-entity>
 		<a-sky src="textures/star.png" ></a-sky>
       	<a-camera position="0 1.6 0">
