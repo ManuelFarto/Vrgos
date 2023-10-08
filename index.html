@@ -19,9 +19,9 @@
 		<img src="pru/textures/Sat/lambert1_Roughness.png" id="Roughness">
 		</a-assets>
 		<a-entity scale="1.5 1.5 1.5" rotation="0 0 0">
-			<a-sphere position="0 1.25 -5" radius="1.25" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" src="#earth">
+			<a-sphere class="clickable" position="0 1.25 -5" radius="1.25" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" src="#earth">
 			</a-sphere>
-			<a-entity id="satelite" obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.001 0.001 0.001" src="#color" ></a-entity>
+			<a-entity id="satelite" class="clickable" obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.001 0.001 0.001" src="#color" ></a-entity>
 		</a-entity>
 		<a-sky src="textures/star.png" ></a-sky>
       	<a-camera position="0 1.6 0">
@@ -37,6 +37,8 @@
 				</a-entity>
 			</a-entity>
 		</a-camera>
+		<a-entity id="satelite" class="clickable" obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.001 0.001 0.001" src="#color" click-handler></a-entity>
+		<a-animation attribute="scale" to="1 1 1" dur="500" begin="scale-up"></a-animation>
 		<a-entity laser-controls="hand: right">
 			<a-entity raycaster="objects: .links; far: 5; lineColor: red; lineOpacity: 0.5"></a-entity>
 		</a-entity>
@@ -46,3 +48,4 @@
     </a-scene>
   </body>
 </html>
+
