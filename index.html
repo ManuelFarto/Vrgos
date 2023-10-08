@@ -11,14 +11,17 @@
 	<body>
 	<a-scene fps="90">
 		<a-assets>
-			<a-asset-item id="sat" src="obj/satelite1.obj"></a-asset-item>
+			<a-asset-item id="sat" src="obj/satelite.obj"></a-asset-item>
 			<a-asset-item id="sat" src="obj/satelite.mtl"></a-asset-item>
 		<img src="textures/earth.jpg" id="earth">
+		<img src="textures/Sat/lambert1_Base_color.png" id="color">
+		<img src="pru/textures/Sat/lambert1_Metallic.png" id="metallic">
+		<img src="pru/textures/Sat/lambert1_Roughness.png" id="Roughness">
 		</a-assets>
 		<a-entity scale="1.5 1.5 1.5" rotation="0 0 0">
 			<a-sphere position="0 1.25 -5" radius="1.25" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" src="#earth">
 			</a-sphere>
-			<a-entity id="satelite" obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.1 0.1 0.1"  ></a-entity>
+			<a-entity id="satelite" obj-model="obj: #sat; mtl: #sat" position="1.2751 .303 .141" scale="0.001 0.001 0.001"  ></a-entity>
 		</a-entity>
 		<a-sky src="textures/star.png" ></a-sky>
       	<a-camera position="0 1.6 0">
